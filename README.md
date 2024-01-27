@@ -9,6 +9,7 @@ Learning course udemy .NET 8
  - HATEOAS;
  - Authentication with JWT;
  - Design Patterns;
+ - Code versioning Git/Gitflow
  - Azure Cloud (Azure Database, Azure Container, Registry, Azure App Services);
  - Continuous integration pipeline with (Github, Github Actions, and Azure);
  - Consume third-party API;
