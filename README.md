@@ -1,5 +1,5 @@
 # CourseUdemy
-Learning course udemy .NET 8
+Learning course REST APIs RESTful from 0 to Azure with .NET 8 and Docker
 
  - API pagination;
  - Media Types and Content Negociation;
