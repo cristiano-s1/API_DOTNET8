@@ -9,6 +9,7 @@ Learning course REST APIs RESTful from 0 to Azure with .NET 8 and Docker
  - HATEOAS;
  - Authentication with JWT;
  - Design Patterns;
+ - Code versioning Git/Gitflow
  - Azure Cloud (Azure Database, Azure Container, Registry, Azure App Services);
  - Continuous integration pipeline with (Github, Github Actions, and Azure);
  - Consume third-party API;
