@@ -15,6 +15,15 @@ var appVersion = "v1";
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
+#region CORS
+builder.Services.AddCors(options => options.AddDefaultPolicy(builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+}));
+#endregion
+
 #region CONTROLLERS
 builder.Services.AddControllers();
 #endregion
@@ -103,15 +112,6 @@ builder.Services.AddApiVersioning();
 #region DEPENDENCY INJECTION
 ConfigureBusiness.ConfigureDependenciesBusiness(builder.Services);
 ConfigureRepository.ConfigureDependenciesRepository(builder.Services, connection);
-#endregion
-
-#region CORS
-builder.Services.AddCors(options => options.AddDefaultPolicy(builder =>
-{
-    builder.AllowAnyOrigin()
-           .AllowAnyMethod()
-           .AllowAnyHeader();
-}));
 #endregion
 
 var app = builder.Build();
