@@ -6,8 +6,8 @@ namespace Udemy.Api.Business
     {
         List<Person> GetAll();
         Person GetById(int id);
-        Person Create(Person person);
-        Person Update(Person person);
+        Person Insert(Person entity);
+        Person Update(Person entity);
         void Delete(int id);
     }
 }

@@ -3,31 +3,31 @@ using Udemy.Api.Repository.Generic;
 
 namespace Udemy.Api.Business.Implementations
 {
-    public class PersonBusinessImplementation : IPersonBusiness
+    public class BookBusinessImplementation : IBookBusiness
     {
-        private readonly IRepository<Person> _repository;
+        private readonly IRepository<Book> _repository;
 
-        public PersonBusinessImplementation(IRepository<Person> repository)
+        public BookBusinessImplementation(IRepository<Book> repository)
         {
             _repository = repository;
         }
 
-        public List<Person> GetAll()
+        public List<Book> GetAll()
         {
             return _repository.GetAll();
         }
 
-        public Person GetById(int id)
+        public Book GetById(int id)
         {
             return _repository.GetById(id);
         }
 
-        public Person Insert(Person entity)
+        public Book Insert(Book entity)
         {
             return _repository.Insert(entity);
         }
 
-        public Person Update(Person entity)
+        public Book Update(Book entity)
         {
             return _repository.Update(entity);
         }

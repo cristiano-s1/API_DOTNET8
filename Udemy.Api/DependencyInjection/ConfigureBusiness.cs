@@ -8,6 +8,7 @@ namespace Udemy.Api.DependencyInjection
         public static void ConfigureDependenciesBusiness(IServiceCollection serviceCollection)
         {
             serviceCollection.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
+            serviceCollection.AddScoped<IBookBusiness, BookBusinessImplementation>();
         }
     }
 }

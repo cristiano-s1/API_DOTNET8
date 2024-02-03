@@ -2,7 +2,7 @@
 
 namespace Udemy.Api.Models
 {
-    public class Base
+    public class BaseEntity
     {
         [Key]
         public int Id { get; set; }

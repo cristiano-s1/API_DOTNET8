@@ -1,18 +1,14 @@
-﻿using Asp.Versioning;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Udemy.Api.Business;
 using Udemy.Api.Models;
 
 namespace Udemy.Api.Controllers
 {
-    [ApiController]
-    [ApiVersion("1")]
-    [Route("api/[controller]/v{version:apiVersion}")]
-    public class PersonController : ControllerBase
+    public class BookController : Controller
     {
-        private readonly IPersonBusiness _business;
+        private readonly IBookBusiness _business;
 
-        public PersonController(IPersonBusiness business)
+        public BookController(IBookBusiness business)
         {
             _business = business;
         }
@@ -32,25 +28,25 @@ namespace Udemy.Api.Controllers
         {
             var result = _business.GetById(id);
 
-            if (result == null) 
+            if (result == null)
                 return NotFound();
 
             return Ok(result);
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Person entity)
+        public IActionResult Post([FromBody] Book entity)
         {
-            if (entity == null) 
+            if (entity == null)
                 return BadRequest();
 
             return Ok(_business.Insert(entity));
         }
 
         [HttpPut]
-        public IActionResult Put([FromBody] Person entity)
+        public IActionResult Put([FromBody] Book entity)
         {
-            if (entity == null) 
+            if (entity == null)
                 return BadRequest();
 
             return Ok(_business.Update(entity));

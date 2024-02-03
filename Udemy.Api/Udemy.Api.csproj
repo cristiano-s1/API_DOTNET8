@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Repository\Implementations\" />
     <Folder Include="Services\Implementations\" />
   </ItemGroup>
 

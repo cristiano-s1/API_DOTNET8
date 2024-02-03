@@ -1,0 +1,16 @@
+INSERT INTO Books (Author, LaunchDate, Price, Title, CreateDate, UpdateDate) VALUES
+('Michael C. Feathers', GETDATE(), 49.00, 'Working effectively with legacy code', GETDATE(), NULL),
+('Ralph Johnson, Erich Gamma, John Vlissides e Richard Helm', getDate(), 45.00, 'Design Patterns', GETDATE(), NULL),
+('Robert C. Martin', GETDATE(), 77.00, 'Clean Code', GETDATE(), NULL),
+('Crockford', GETDATE(), 67.00, 'JavaScript', GETDATE(), NULL),
+('Steve McConnell', GETDATE(), 58.00, 'Code complete', GETDATE(), NULL),
+('Martin Fowler e Kent Beck', GETDATE(), 88.00, 'Refactoring', GETDATE(), NULL),
+('Eric Freeman, Elisabeth Freeman, Kathy Sierra, Bert Bates', getDate(), 110.00, 'Head First Design Patterns', GETDATE(), NULL),
+('Eric Evans', GETDATE(), 92.00, 'Domain Driven Design', GETDATE(), NULL),
+('Brian Goetz e Tim Peierls', GETDATE(), 80.00, 'Java Concurrency in Practice', GETDATE(), NULL),
+('Susan Cain', GETDATE(), 123.00, 'O poder dos quietos', GETDATE(), NULL),
+('Roger S. Pressman', GETDATE(), 56.00, 'Engenharia de Software: uma abordagem profissional', GETDATE(), NULL),
+('Viktor Mayer-Schonberger e Kenneth Kukier', GETDATE(), 54.00, 'Big Data: como extrair volume, variedade, velocidade e valor da avalanche de informação cotidiana', GETDATE(), NULL),
+('Richard Hunter e George Westerman', GETDATE(), 95.00, 'O verdadeiro valor de TI', GETDATE(), NULL),
+('Marc J. Schiller', GETDATE(), 45.00, 'Os 11 segredos de líderes de TI altamente influentes', GETDATE(), NULL),
+('Aguinaldo Aragon Fernandes e Vladimir Ferraz de Abreu', GETDATE(), 54.00, 'Implantando a governança de TI', GETDATE(), NULL);

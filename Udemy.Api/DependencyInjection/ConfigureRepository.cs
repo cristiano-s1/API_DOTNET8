@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Udemy.Api.Context;
 using Udemy.Api.Repository;
+using Udemy.Api.Repository.Generic;
 using Udemy.Api.Repository.Implementations;
 
 namespace Udemy.Api.DependencyInjection
@@ -9,7 +10,7 @@ namespace Udemy.Api.DependencyInjection
     {
         public static void ConfigureDependenciesRepository(IServiceCollection serviceCollection, string connection)
         {
-            //serviceCollection.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            serviceCollection.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
             serviceCollection.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
 
             //Connection Database
