@@ -1,4 +1,4 @@
-# CourseUdemy
+# API DOTNET8
 Learning course REST APIs RESTful from 0 to Azure with .NET 8 and Docker
 
  - API pagination;
