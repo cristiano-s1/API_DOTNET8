@@ -1,4 +1,6 @@
-﻿using Udemy.Api.Models;
+﻿using Udemy.Api.Data.Converter.Implementations;
+using Udemy.Api.Data.VO;
+using Udemy.Api.Models;
 using Udemy.Api.Repository.Generic;
 
 namespace Udemy.Api.Business.Implementations
@@ -6,30 +8,38 @@ namespace Udemy.Api.Business.Implementations
     public class BookBusinessImplementation : IBookBusiness
     {
         private readonly IRepository<Book> _repository;
+        private readonly BookConverter _converter;
 
         public BookBusinessImplementation(IRepository<Book> repository)
         {
             _repository = repository;
+            _converter = new BookConverter();
         }
 
-        public List<Book> GetAll()
+        public List<BookVO> GetAll()
         {
-            return _repository.GetAll();
+            return _converter.Parse(_repository.GetAll());
         }
 
-        public Book GetById(int id)
+        public BookVO GetById(int id)
         {
-            return _repository.GetById(id);
+            return _converter.Parse(_repository.GetById(id));
         }
 
-        public Book Insert(Book entity)
+        public BookVO Insert(BookVO entity)
         {
-            return _repository.Insert(entity);
+            Book book = _converter.Parse(entity);
+            book = _repository.Insert(book); 
+
+            return _converter.Parse(book);
         }
 
-        public Book Update(Book entity)
+        public BookVO Update(BookVO entity)
         {
-            return _repository.Update(entity);
+            Book book = _converter.Parse(entity);
+            book = _repository.Update(book);
+
+            return _converter.Parse(book);
         }
 
         public void Delete(int id)

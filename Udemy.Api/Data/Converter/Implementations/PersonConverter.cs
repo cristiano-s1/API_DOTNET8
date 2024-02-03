@@ -4,11 +4,12 @@ using Udemy.Api.Data.Converter.Contract;
 
 namespace Udemy.Api.Data.Converter.Implementations
 {
-    public class PersonConverterImplementation : IParser<PersonVO, Person>, IParser<Person, PersonVO>
+    public class PersonConverter : IParser<PersonVO, Person>, IParser<Person, PersonVO>
     {
         public Person Parse(PersonVO origin)
         {
-            if (origin == null) return null;
+            if (origin == null) 
+                return null;
 
             return new Person
             {
@@ -22,7 +23,8 @@ namespace Udemy.Api.Data.Converter.Implementations
 
         public PersonVO Parse(Person origin)
         {
-            if (origin == null) return null;
+            if (origin == null) 
+                return null;
 
             return new PersonVO
             {
@@ -36,14 +38,16 @@ namespace Udemy.Api.Data.Converter.Implementations
 
         public List<Person> Parse(List<PersonVO> origin)
         {
-            if (origin == null) return null;
+            if (origin == null) 
+                return null;
 
             return origin.Select(item => Parse(item)).ToList();
         }
 
         public List<PersonVO> Parse(List<Person> origin)
         {
-            if (origin == null) return null;
+            if (origin == null) 
+                return null;
 
             return origin.Select(item => Parse(item)).ToList();
         }
