@@ -1,15 +1,16 @@
 ﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using Udemy.Api.Business;
 using Udemy.Api.Data.VO;
 using Udemy.Api.Hypermedia.Filters;
-using Udemy.Api.Models;
 
 namespace Udemy.Api.Controllers
 {
     [ApiController]
     [ApiVersion("1")]
+    [Authorize("Bearer")]
     [Route("api/[controller]/v{version:apiVersion}")]
     public class BookController : Controller
     {
@@ -23,9 +24,6 @@ namespace Udemy.Api.Controllers
         /// <summary>
         /// GetAll Book
         /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
         /// <returns>Event Data</returns>
         /// <response code="200">Success</response>
         /// <response code="401">Not Authorized</response>
@@ -51,9 +49,6 @@ namespace Udemy.Api.Controllers
         /// <summary>
         /// GetById Book
         /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
         /// <param name="id">Event Identifier</param>
         /// <returns>Event Data</returns>
         /// <response code="200">Success</response>
@@ -62,7 +57,7 @@ namespace Udemy.Api.Controllers
         /// <response code="500">Internal Server Error</response>
         [HttpGet("{id}")]
         [TypeFilter(typeof(HyperMediaFilter))]
-        [ProducesResponseType((StatusCodes.Status200OK), Type = typeof(List<Book>))]
+        [ProducesResponseType((StatusCodes.Status200OK), Type = typeof(List<BookVO>))]
         [ProducesResponseType((StatusCodes.Status401Unauthorized))]
         [ProducesResponseType((StatusCodes.Status404NotFound))]
         [ProducesResponseType((StatusCodes.Status500InternalServerError))]
@@ -88,7 +83,7 @@ namespace Udemy.Api.Controllers
         /// Create Book
         /// </summary>
         /// <remarks>
-        /// 
+        /// [{"code": 0, "title": "string", "author": "string", "price": 0, "launch_date": "2024-02-04T01:56:36.424Z"}]
         /// </remarks>
         /// <param name="entity">Event Identifier</param>
         /// <returns>Event Data</returns>
@@ -99,7 +94,7 @@ namespace Udemy.Api.Controllers
         /// <response code="500">Internal Server Error</response>
         [HttpPost]
         [TypeFilter(typeof(HyperMediaFilter))]
-        [ProducesResponseType((StatusCodes.Status200OK), Type = typeof(List<Book>))]
+        [ProducesResponseType((StatusCodes.Status200OK), Type = typeof(List<BookVO>))]
         [ProducesResponseType((StatusCodes.Status400BadRequest))]
         [ProducesResponseType((StatusCodes.Status401Unauthorized))]
         [ProducesResponseType((StatusCodes.Status404NotFound))]
@@ -129,7 +124,7 @@ namespace Udemy.Api.Controllers
         /// Update Book
         /// </summary>
         /// <remarks>
-        /// 
+        /// [{"code": 0, "title": "string", "author": "string", "price": 0, "launch_date": "2024-02-04T01:56:36.424Z"}]
         /// </remarks>
         /// <param name="entity">Event Identifier</param>
         /// <returns>Event Data</returns>
@@ -140,7 +135,7 @@ namespace Udemy.Api.Controllers
         /// <response code="500">Internal Server Error</response>
         [HttpPut]
         [TypeFilter(typeof(HyperMediaFilter))]
-        [ProducesResponseType((StatusCodes.Status200OK), Type = typeof(List<Book>))]
+        [ProducesResponseType((StatusCodes.Status200OK), Type = typeof(List<BookVO>))]
         [ProducesResponseType((StatusCodes.Status400BadRequest))]
         [ProducesResponseType((StatusCodes.Status401Unauthorized))]
         [ProducesResponseType((StatusCodes.Status404NotFound))]
@@ -169,9 +164,6 @@ namespace Udemy.Api.Controllers
         /// <summary>
         /// Delete Book
         /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
         /// <param name="id">Event Identifier</param>
         /// <returns>Event Data</returns>
         /// <response code="204">No Content</response>

@@ -1,4 +1,5 @@
 ﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using Udemy.Api.Business;
@@ -9,6 +10,7 @@ namespace Udemy.Api.Controllers
 {
     [ApiController]
     [ApiVersion("1")]
+    [Authorize("Bearer")]
     [Route("api/[controller]/v{version:apiVersion}")]
     public class PersonController : ControllerBase
     {
@@ -22,9 +24,6 @@ namespace Udemy.Api.Controllers
         /// <summary>
         /// GetAll Person
         /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
         /// <returns>Event Data</returns>
         /// <response code="200">Success</response>
         /// <response code="401">Not Authorized</response>
@@ -50,9 +49,6 @@ namespace Udemy.Api.Controllers
         /// <summary>
         /// GetById Person
         /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
         /// <param name="id">Event Identifier</param>
         /// <returns>Event Data</returns>
         /// <response code="200">Success</response>
@@ -87,7 +83,7 @@ namespace Udemy.Api.Controllers
         /// Create Person
         /// </summary>
         /// <remarks>
-        /// 
+        /// [{"code": 0, "first_name": "string", "last_name": "string", "address": "string", "gender": "string"}]
         /// </remarks>
         /// <param name="entity">Event Identifier</param>
         /// <returns>Event Data</returns>
@@ -128,7 +124,7 @@ namespace Udemy.Api.Controllers
         /// Update Person
         /// </summary>
         /// <remarks>
-        /// 
+        /// [{"code": 0, "first_name": "string", "last_name": "string", "address": "string", "gender": "string"}]
         /// </remarks>
         /// <param name="entity">Event Identifier</param>
         /// <returns>Event Data</returns>
@@ -168,9 +164,6 @@ namespace Udemy.Api.Controllers
         /// <summary>
         /// Delete Person
         /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
         /// <param name="id">Event Identifier</param>
         /// <returns>Event Data</returns>
         /// <response code="204">No Content</response>

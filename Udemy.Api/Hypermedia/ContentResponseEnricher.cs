@@ -12,6 +12,7 @@ namespace Udemy.Api.Hypermedia
         {
 
         }
+
         public virtual bool CanEnrich(Type contentType)
         {
             return contentType == typeof(T) || contentType == typeof(List<T>);

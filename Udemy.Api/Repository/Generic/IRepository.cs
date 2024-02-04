@@ -2,7 +2,7 @@
 
 namespace Udemy.Api.Repository.Generic
 {
-    public interface IRepository <T> where T : BaseEntity
+    public interface IRepository<T> where T : BaseEntity
     {
         List<T> GetAll();
         T GetById(int id);

@@ -1,9 +1,15 @@
 using EvolveDb;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using System.Text;
+using Udemy.Api.Configurations;
 using Udemy.Api.DependencyInjection;
 using Udemy.Api.Hypermedia.Enricher;
 using Udemy.Api.Hypermedia.Filters;
@@ -14,6 +20,42 @@ var appDescription = $"REST API RESTful developed in course {appName}";
 var appVersion = "v1";
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
+
+#region AUTENTICAÇÃO
+var tokenConfigurations = new TokenConfiguration();
+
+new ConfigureFromConfigurationOptions<TokenConfiguration>(
+        builder.Configuration.GetSection("TokenConfigurations")
+    ).Configure(tokenConfigurations);
+
+builder.Services.AddSingleton(tokenConfigurations);
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = tokenConfigurations.Issuer,
+        ValidAudience = tokenConfigurations.Audience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenConfigurations.Secret))
+    };
+});
+
+builder.Services.AddAuthorization(auth =>
+{
+    auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+        .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+        .RequireAuthenticatedUser().Build());
+});
+#endregion
 
 #region CORS
 builder.Services.AddCors(options => options.AddDefaultPolicy(builder =>
@@ -111,6 +153,7 @@ builder.Services.AddApiVersioning();
 
 #region DEPENDENCY INJECTION
 ConfigureBusiness.ConfigureDependenciesBusiness(builder.Services);
+ConfigureService.ConfigureDependenciesService(builder.Services);
 ConfigureRepository.ConfigureDependenciesRepository(builder.Services, connection);
 #endregion
 
