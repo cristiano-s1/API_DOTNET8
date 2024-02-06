@@ -10,6 +10,7 @@ namespace Udemy.Api.DependencyInjection
         public static void ConfigureDependenciesRepository(IServiceCollection serviceCollection, string connection)
         {
             serviceCollection.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
+            serviceCollection.AddScoped<IPersonRepository, PersonRepository>();
             serviceCollection.AddScoped<IUserRepository, UserRepository>();
 
             //Connection Database
