@@ -121,6 +121,41 @@ namespace Udemy.Api.Controllers
         }
 
         /// <summary>
+        /// Patch Person
+        /// </summary>
+        /// <param name="id">Event Identifier</param>
+        /// <returns>Event Data</returns>
+        /// <response code="200">Success</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="401">Not Authorized</response>
+        /// <response code="500">Internal Server Error</response>
+        [HttpPatch("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
+        [ProducesResponseType((StatusCodes.Status200OK), Type = typeof(List<PersonVO>))]
+        [ProducesResponseType((StatusCodes.Status400BadRequest))]
+        [ProducesResponseType((StatusCodes.Status401Unauthorized))]
+        [ProducesResponseType((StatusCodes.Status500InternalServerError))]
+        public IActionResult Patch(int id)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var person = _business.Disable(id);
+
+                return Ok(person);
+            }
+            catch (ArgumentException ex)
+            {
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+
+        /// <summary>
         /// Update Person
         /// </summary>
         /// <remarks>

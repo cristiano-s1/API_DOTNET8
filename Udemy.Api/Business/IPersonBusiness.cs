@@ -10,5 +10,6 @@ namespace Udemy.Api.Business
         PersonVO Insert(PersonVO entity);
         PersonVO Update(PersonVO entity);
         void Delete(int id);
+        PersonVO Disable(int id);
     }
 }
