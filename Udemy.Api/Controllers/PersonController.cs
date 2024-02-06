@@ -80,6 +80,40 @@ namespace Udemy.Api.Controllers
         }
 
         /// <summary>
+        /// GetById Person
+        /// </summary>
+        /// <param name="firstName">Event Identifier</param>
+        /// <param name="lastName"></param>
+        /// <returns>Event Data</returns>
+        /// <response code="200">Success</response>
+        /// <response code="401">Not Authorized</response>
+        /// <response code="404">Not Found</response>
+        /// <response code="500">Internal Server Error</response>
+        [HttpGet("findPersonByName")]
+        [TypeFilter(typeof(HyperMediaFilter))]
+        [ProducesResponseType((StatusCodes.Status200OK), Type = typeof(List<PersonVO>))]
+        [ProducesResponseType((StatusCodes.Status401Unauthorized))]
+        [ProducesResponseType((StatusCodes.Status404NotFound))]
+        [ProducesResponseType((StatusCodes.Status500InternalServerError))]
+        public IActionResult Get([FromQuery] string firstName, string lastName)
+        {
+            try
+            {
+                var result = _business.FindByName(firstName, lastName);
+
+                if (result == null)
+                    return NotFound();
+
+                return Ok(result);
+            }
+            catch (ArgumentException ex)
+            {
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+
+        /// <summary>
         /// Create Person
         /// </summary>
         /// <remarks>

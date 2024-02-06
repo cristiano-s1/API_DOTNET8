@@ -32,5 +32,27 @@ namespace Udemy.Api.Repository
 
             return user;
         }
+
+        public List<Person> FindByName(string firstName, string lastName)
+        {
+            if (!string.IsNullOrWhiteSpace(firstName) && !string.IsNullOrWhiteSpace(lastName))
+            {
+                return _context.Persons.Where(x => x.FirstName.Contains(firstName) && x.LastName.Contains(lastName)).ToList();
+
+            }
+            
+            if (string.IsNullOrWhiteSpace(firstName) && !string.IsNullOrWhiteSpace(lastName))
+            {
+                return _context.Persons.Where(x => x.LastName.Contains(lastName)).ToList();
+
+            }
+            
+            if (!string.IsNullOrWhiteSpace(firstName) && string.IsNullOrWhiteSpace(lastName))
+            {
+                return _context.Persons.Where(x => x.FirstName.Contains(firstName)).ToList();
+            }
+
+            return null;
+        }
     }
 }

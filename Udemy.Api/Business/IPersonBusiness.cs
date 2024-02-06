@@ -7,6 +7,7 @@ namespace Udemy.Api.Business
     {
         List<PersonVO> GetAll();
         PersonVO GetById(int id);
+        List<PersonVO> FindByName(string firstName, string lastName);
         PersonVO Insert(PersonVO entity);
         PersonVO Update(PersonVO entity);
         void Delete(int id);

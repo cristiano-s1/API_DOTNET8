@@ -26,6 +26,11 @@ namespace Udemy.Api.Business.Implementations
             return _converter.Parse(_repository.GetById(id));
         }
 
+        public List<PersonVO> FindByName(string firstName, string lastName)
+        {
+            return _converter.Parse(_repository.FindByName(firstName, lastName));
+        }
+
         public PersonVO Insert(PersonVO entity)
         {
             Person person = _converter.Parse(entity);
