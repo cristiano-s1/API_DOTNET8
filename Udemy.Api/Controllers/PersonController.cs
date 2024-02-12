@@ -80,6 +80,31 @@ namespace Udemy.Api.Controllers
         }
 
         /// <summary>
+        /// HATEOAS Person pagination
+        /// </summary>
+        /// <returns>Event Data</returns>
+        /// <response code="200">Success</response>
+        /// <response code="401">Not Authorized</response>
+        /// <response code="500">Internal Server Error</response>
+        [HttpGet("{sortDirection}/{pageSize}/{page}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
+        [ProducesResponseType((StatusCodes.Status200OK), Type = typeof(List<PersonVO>))]
+        [ProducesResponseType((StatusCodes.Status401Unauthorized))]
+        [ProducesResponseType((StatusCodes.Status500InternalServerError))]
+        public IActionResult Get([FromQuery] string name, string sortDirection, int pageSize, int page)
+        {
+            try
+            {
+                return Ok(_business.FindWithPagedSearch(name, sortDirection, pageSize, page));
+            }
+            catch (ArgumentException ex)
+            {
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+
+        /// <summary>
         /// GetById Person
         /// </summary>
         /// <param name="firstName">Event Identifier</param>
