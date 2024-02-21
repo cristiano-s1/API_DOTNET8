@@ -1,8 +1,8 @@
-# API DOTNET8
+# Course Udemy API REST
 Learning course REST APIs RESTful from 0 to Azure with .NET 8 and Docker
 
  - API pagination;
- - Media Types and Content Negociation;
+ - Media Types and Content Negotiation;
  - Download and Upload API;
  - SQL e Migrations;
  - Document an API with Swagger (OpenAPI);
@@ -11,7 +11,7 @@ Learning course REST APIs RESTful from 0 to Azure with .NET 8 and Docker
  - Design Patterns;
  - Code versioning Git/Gitflow
  - Azure Cloud (Azure Database, Azure Container, Registry, Azure App Services);
- - Continuous integration pipeline with (Github, Github Actions, and Azure);
+ - Continuous integration pipeline with (Github, GitHub Actions, and Azure);
  - Consume third-party API;
  - Docker;
  - Integrate Microservices with the ChatGPT API;
