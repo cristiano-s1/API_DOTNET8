@@ -2,7 +2,7 @@
 
 namespace Udemy.Api.Repository.Generic
 {
-    public interface IRepository <T> where T : BaseEntity
+    public interface IRepository<T> where T : BaseEntity
     {
         List<T> GetAll();
         T GetById(int id);
@@ -10,5 +10,9 @@ namespace Udemy.Api.Repository.Generic
         T Update(T Item);
         void Delete(int id);
         bool Exists(int id);
+
+        //HATEOAS
+        List<T> FindWithPagedSearch(string query);
+        int GetCount(string query);
     }
 }
