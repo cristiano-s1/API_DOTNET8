@@ -1,5 +1,5 @@
 ﻿using Udemy.Api.Data.VO;
-using Udemy.Api.Models;
+using Udemy.Api.Hypermedia.Utils;
 
 namespace Udemy.Api.Business
 {
@@ -10,5 +10,8 @@ namespace Udemy.Api.Business
         BookVO Insert(BookVO entity);
         BookVO Update(BookVO entity);
         void Delete(int id);
+
+        //HATEOAS
+        PagedSearchVO<BookVO> FindWithPagedSearch(string name, string sortDirection, int pageSize, int page);
     }
 }
