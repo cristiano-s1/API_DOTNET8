@@ -4,7 +4,7 @@ namespace Udemy.Api.Data.VO
 {
     public class UserVO
     {
-        [JsonPropertyName("user_name")]
+        [JsonPropertyName("userName")]
         public string UserName { get; set; }
 
         [JsonPropertyName("password")]

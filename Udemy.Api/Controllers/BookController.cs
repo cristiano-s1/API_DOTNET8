@@ -21,6 +21,31 @@ namespace Udemy.Api.Controllers
             _business = business;
         }
 
+
+        /// <summary>
+        /// HATEOAS Book pagination
+        /// </summary>
+        /// <returns>Event Data</returns>
+        /// <response code="200">Success</response>
+        /// <response code="401">Not Authorized</response>
+        /// <response code="500">Internal Server Error</response>
+        [HttpGet("{sortDirection}/{pageSize}/{page}")]
+        [ProducesResponseType((StatusCodes.Status200OK), Type = typeof(List<BookVO>))]
+        [ProducesResponseType((StatusCodes.Status401Unauthorized))]
+        [ProducesResponseType((StatusCodes.Status500InternalServerError))]
+        public IActionResult Get([FromQuery] string title, string sortDirection, int pageSize, int page)
+        {
+            try
+            {
+                return Ok(_business.FindWithPagedSearch(title, sortDirection, pageSize, page));
+            }
+            catch (ArgumentException ex)
+            {
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+
         /// <summary>
         /// GetAll Book
         /// </summary>
@@ -29,7 +54,6 @@ namespace Udemy.Api.Controllers
         /// <response code="401">Not Authorized</response>
         /// <response code="500">Internal Server Error</response>
         [HttpGet]
-        [TypeFilter(typeof(HyperMediaFilter))]
         [ProducesResponseType((StatusCodes.Status200OK), Type = typeof(List<BookVO>))]
         [ProducesResponseType((StatusCodes.Status401Unauthorized))]
         [ProducesResponseType((StatusCodes.Status500InternalServerError))]
@@ -56,8 +80,7 @@ namespace Udemy.Api.Controllers
         /// <response code="404">Not Found</response>
         /// <response code="500">Internal Server Error</response>
         [HttpGet("{id}")]
-        [TypeFilter(typeof(HyperMediaFilter))]
-        [ProducesResponseType((StatusCodes.Status200OK), Type = typeof(List<BookVO>))]
+        [ProducesResponseType((StatusCodes.Status200OK), Type = typeof(BookVO))]
         [ProducesResponseType((StatusCodes.Status401Unauthorized))]
         [ProducesResponseType((StatusCodes.Status404NotFound))]
         [ProducesResponseType((StatusCodes.Status500InternalServerError))]
@@ -93,8 +116,7 @@ namespace Udemy.Api.Controllers
         /// <response code="404">Not Found</response>
         /// <response code="500">Internal Server Error</response>
         [HttpPost]
-        [TypeFilter(typeof(HyperMediaFilter))]
-        [ProducesResponseType((StatusCodes.Status200OK), Type = typeof(List<BookVO>))]
+        [ProducesResponseType((StatusCodes.Status200OK), Type = typeof(BookVO))]
         [ProducesResponseType((StatusCodes.Status400BadRequest))]
         [ProducesResponseType((StatusCodes.Status401Unauthorized))]
         [ProducesResponseType((StatusCodes.Status404NotFound))]
@@ -134,8 +156,7 @@ namespace Udemy.Api.Controllers
         /// <response code="404">Not Found</response>
         /// <response code="500">Internal Server Error</response>
         [HttpPut]
-        [TypeFilter(typeof(HyperMediaFilter))]
-        [ProducesResponseType((StatusCodes.Status200OK), Type = typeof(List<BookVO>))]
+        [ProducesResponseType((StatusCodes.Status200OK), Type = typeof(BookVO))]
         [ProducesResponseType((StatusCodes.Status400BadRequest))]
         [ProducesResponseType((StatusCodes.Status401Unauthorized))]
         [ProducesResponseType((StatusCodes.Status404NotFound))]
