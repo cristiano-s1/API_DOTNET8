@@ -22,10 +22,10 @@ namespace Udemy.Api.Data.VO
         [JsonPropertyName("expiration")]
         public string Expiration { get; set; }
 
-        [JsonPropertyName("access_token")]
+        [JsonPropertyName("accessToken")]
         public string AccessToken { get; set; }
 
-        [JsonPropertyName("refresh_token")]
+        [JsonPropertyName("refreshToken")]
         public string RefreshToken { get; set; }
     }
 }

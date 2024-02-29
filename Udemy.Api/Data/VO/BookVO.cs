@@ -18,7 +18,7 @@ namespace Udemy.Api.Data.VO
         [JsonPropertyName("price")]
         public Decimal Price { get; set; }
 
-        [JsonPropertyName("launch_date")]
+        [JsonPropertyName("launchDate")]
         public DateTime LaunchDate { get; set; }
 
         public List<HyperMediaLink> Links { get; set; } = new List<HyperMediaLink>();
