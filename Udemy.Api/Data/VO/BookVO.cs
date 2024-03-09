@@ -6,7 +6,7 @@ namespace Udemy.Api.Data.VO
 {
     public class BookVO : ISupportsHyperMedia
     {
-        [JsonPropertyName("code")]
+        [JsonPropertyName("id")]
         public int Id { get; set; }
 
         [JsonPropertyName("title")]
