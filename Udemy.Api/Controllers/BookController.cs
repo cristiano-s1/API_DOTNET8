@@ -133,7 +133,7 @@ namespace Udemy.Api.Controllers
                 if (entity == null)
                     return BadRequest();
 
-                return Ok(_business.Update(entity));
+                return Ok(_business.Insert(entity));
             }
             catch (ArgumentException ex)
             {
