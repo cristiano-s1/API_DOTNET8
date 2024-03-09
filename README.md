@@ -1,4 +1,5 @@
 # Course Udemy API REST
+https://www.udemy.com/course/restful-apis-do-0-a-nuvem-com-aspnet-core-e-docker
 Learning course REST APIs RESTful from 0 to Azure with .NET 8 and Docker
 
  - API pagination;
@@ -17,4 +18,6 @@ Learning course REST APIs RESTful from 0 to Azure with .NET 8 and Docker
  - Integrate Microservices with the ChatGPT API;
  - Front-end ReactJS;
 
-https://www.udemy.com/course/restful-apis-do-0-a-nuvem-com-aspnet-core-e-docker
+Repository app React: https://github.com/cristiano-s1/CourseUdemyReact
+
+
